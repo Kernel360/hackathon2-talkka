@@ -1,1 +1,1 @@
-# hackerton2-gyeonggiBus
+# hackathon2-gyeonggiBus
