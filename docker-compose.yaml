@@ -8,12 +8,11 @@ networks:
 
 services:
   bus-server:
-    build: ./bus-server
+    build: ./bus-seat
     container_name: bus-server
     ports:
       - "8080:8080"
     env_file:
-      - ./bus-client-server/.env
       - ./.env
     depends_on:
       - mysql
