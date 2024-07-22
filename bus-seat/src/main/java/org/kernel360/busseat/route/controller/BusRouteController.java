@@ -21,9 +21,9 @@ public class BusRouteController {
 
 	@GetMapping("/{routeId}")
 	public Optional<RouteDto> findByStationId(
-		@PathVariable("routeId") Long stationId
+		@PathVariable("routeId") Long routeId
 	) {
-		return busRouteService.findBusRouteById(stationId);
+		return busRouteService.findBusRouteById(routeId);
 	}
 
 	@GetMapping("/")
