@@ -3,6 +3,8 @@ package org.kernel360.busseat.route.entity;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity(name = "bus_route")
 public class BusRouteEntity {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long routeId;
 	private String routeName;
 	private Timestamp createdAt;

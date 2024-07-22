@@ -1,10 +1,11 @@
 package org.kernel360.busseat.station.cotroller;
 
-import java.util.Optional;
+import java.util.List;
 
-import org.kernel360.busseat.station.entity.BusStationEntity;
+import org.kernel360.busseat.station.dto.StationDto;
 import org.kernel360.busseat.station.service.BusStationService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,10 +18,20 @@ import lombok.RequiredArgsConstructor;
 public class BusStationController {
 	private final BusStationService busStationService;
 
-	@GetMapping("")
-	public Optional<BusStationEntity> findByStationId(
-		@RequestParam Long stationId
+	@GetMapping("/{stationId}")
+	public StationDto findByStationId(
+		@PathVariable("stationId") Long stationId
 	) {
-		return busStationService.findBusStationById(stationId);
+		return busStationService.findBusStationById(stationId).orElseThrow(); // 처리 필요함.
+	}
+
+	@GetMapping("/")
+	public List<StationDto> findAll(
+		@RequestParam("stationName") String stationName
+	) {
+		if (stationName == null) {
+			return busStationService.findAll();
+		}
+		return busStationService.searchByStationName(stationName);
 	}
 }
