@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @RestController
 public class BusLocationController {
@@ -42,7 +41,7 @@ public class BusLocationController {
 		Map<String, Object> response = scheduledTask.request(path, encodedKey, params, Map.class);
 
 		// Interpret the result code
-		Integer resultCodeValue = (Integer) response.get("resultCode");
+		Integer resultCodeValue = (Integer)response.get("resultCode");
 		if (resultCodeValue == null) {
 			// Handle missing resultCode appropriately
 			response.put("resultMessage", "Result code is missing in the response.");
