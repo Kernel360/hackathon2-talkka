@@ -37,7 +37,7 @@ public class BusLocationController {
 		String encodedKey = apiProperties.getServiceKey(); // Assuming serviceKey is configured correctly
 
 		// Use scheduledTask to make the request
-		Map<String, Object> response = ScheduledTask.request(path, encodedKey, params, Map.class);
+		Map<String, Object> response = scheduledTask.request(path, encodedKey, params, Map.class);
 
 		// Return ResponseEntity with the response from the API
 		return ResponseEntity.ok(response);
