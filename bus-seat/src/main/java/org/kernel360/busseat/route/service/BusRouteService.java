@@ -31,7 +31,7 @@ public class BusRouteService {
 			.toList();
 	}
 
-	public RouteDto searchByRouteName(String name) {
+	public RouteDto findBusSeatInfo(String name) {
 		return toDto(busRouteRepository.findByRouteName(name));
 	}
 

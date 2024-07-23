@@ -16,7 +16,7 @@ public class BusLocationService {
 	public List<BusRouteLocationEntity> getBusSeatInfoByRouteAndStation(Long routeId,
 		Long stationId) {
 		System.out.println("Getting bus seat info for routeId: " + routeId + ", stationId: " + stationId);
-		List<BusRouteLocationEntity> busRouteLocations = busLocationRepository.findByRouteIdAndStationIdOrderByCreatedAtAsc(
+		List<BusRouteLocationEntity> busRouteLocations = busLocationRepository.findBusSeatInfo(
 			routeId, stationId);
 		System.out.println("BusRouteLocations found: " + busRouteLocations.size());
 		return busRouteLocations;

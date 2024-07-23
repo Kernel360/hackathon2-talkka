@@ -31,7 +31,7 @@ public class HomeController {
 		@RequestParam("stationName") String stationName,
 		Model model) {
 		StationDto station = busStationService.searchByStationName(stationName);
-		RouteDto route = busRouteService.searchByRouteName(routeName);
+		RouteDto route = busRouteService.findBusSeatInfo(routeName);
 
 		if (station == null || route == null) {
 			model.addAttribute("error", "No matching station or route found.");

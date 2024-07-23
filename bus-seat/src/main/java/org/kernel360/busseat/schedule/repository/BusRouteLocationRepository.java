@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface BusRouteLocationRepository extends JpaRepository<BusRouteLocationEntity, Long> {
 	@Query("SELECT b FROM BusRouteLocationEntity b WHERE b.routeId = :routeId AND b.stationId = :stationId ORDER BY b.createdAt DESC")
-	List<BusRouteLocationEntity> findByRouteIdAndStationIdOrderByCreatedAtAsc(@Param("routeId") Long routeId,
+	List<BusRouteLocationEntity> findBusSeatInfo(@Param("routeId") Long routeId,
 		@Param("stationId") Long stationId); // @Param 어노테이션 추가
 }
