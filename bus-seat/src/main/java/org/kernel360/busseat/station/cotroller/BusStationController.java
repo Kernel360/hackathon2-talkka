@@ -32,6 +32,6 @@ public class BusStationController {
 		if (stationName == null) {
 			return busStationService.findAll();
 		}
-		return busStationService.searchByStationName(stationName);
+		return busStationService.searchByStationNames(stationName);
 	}
 }

@@ -26,10 +26,15 @@ public class BusStationService {
 		return entity.map(this::toDto);
 	}
 
-	public List<StationDto> searchByStationName(String name) {
+	public List<StationDto> searchByStationNames(String name) {
 		return busStationRepository.findByStationNameContaining(name).stream()
 			.map(this::toDto)
 			.toList();
+	}
+
+	public StationDto searchByStationName(String name) {
+		BusStationEntity busStationEntity = busStationRepository.findByStationName(name);
+		return toDto(busStationEntity);
 	}
 
 	private StationDto toDto(BusStationEntity entity) {
