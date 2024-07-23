@@ -7,8 +7,8 @@ import java.util.Map;
 import org.kernel360.busseat.schedule.ApiProperties;
 import org.kernel360.busseat.schedule.dto.BusLocation;
 import org.kernel360.busseat.schedule.dto.BusLocationDto;
-import org.kernel360.busseat.schedule.entity.BusLocationEntity;
-import org.kernel360.busseat.schedule.repository.BusLocationRepository;
+import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
+import org.kernel360.busseat.schedule.repository.BusRouteLocationRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ScheduledTask {
 
 	private final ApiProperties apiProperties;
-	private final BusLocationRepository busLocationRepository;
+	private final BusRouteLocationRepository busLocationRepository;
 
 	@Scheduled(fixedRate = 60000) // 180000 밀리초 = 3분
 	public void sendScheduledRequest() {
@@ -52,7 +52,7 @@ public class ScheduledTask {
 		try {
 			BusLocationDto busLocationDto = objectMapper.convertValue(response, BusLocationDto.class);
 			for (BusLocation busLocation : busLocationDto.getMsgBody().getBusLocationList()) {
-				BusLocationEntity busLocationEntity = new BusLocationEntity();
+				BusRouteLocationEntity busLocationEntity = new BusRouteLocationEntity();
 				busLocationEntity.setEndBus(busLocation.getEndBus());
 				busLocationEntity.setStationId(busLocation.getStationId());
 				busLocationEntity.setPlateNo(busLocation.getPlateNo());

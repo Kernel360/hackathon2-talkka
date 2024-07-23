@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.kernel360.busseat.route_station.entity.BusRouteStationEntity;
 import org.kernel360.busseat.schedule.entity.BusLocationEntity;
+import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -39,4 +40,7 @@ public class BusStationEntity {
 
   @OneToMany(mappedBy = "busStationEntity")
 	private Set<BusLocationEntity> busLocations;
+  
+  @OneToMany(mappedBy = "busStationEntity")
+	private Set<BusRouteLocationEntity> busLocations;
 }
