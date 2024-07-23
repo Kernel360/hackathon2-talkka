@@ -2,7 +2,7 @@ package org.kernel360.busseat.schedule.repository;
 
 import java.util.List;
 
-import org.kernel360.busseat.schedule.Entity.BusRouteLocationEntity;
+import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

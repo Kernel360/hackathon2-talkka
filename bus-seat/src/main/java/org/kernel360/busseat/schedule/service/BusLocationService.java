@@ -2,7 +2,7 @@ package org.kernel360.busseat.schedule.service;
 
 import java.util.List;
 
-import org.kernel360.busseat.schedule.Entity.BusRouteLocationEntity;
+import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
 import org.kernel360.busseat.schedule.repository.BusRouteLocationRepository;
 import org.springframework.stereotype.Service;
 

@@ -5,9 +5,9 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 import org.kernel360.busseat.schedule.ApiProperties;
-import org.kernel360.busseat.schedule.Entity.BusRouteLocationEntity;
 import org.kernel360.busseat.schedule.dto.BusLocation;
 import org.kernel360.busseat.schedule.dto.BusLocationDto;
+import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
 import org.kernel360.busseat.schedule.repository.BusRouteLocationRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
