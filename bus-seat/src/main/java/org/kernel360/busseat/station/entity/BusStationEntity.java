@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 import org.kernel360.busseat.route_station.entity.BusRouteStationEntity;
+import org.kernel360.busseat.schedule.entity.BusLocationEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -35,4 +36,7 @@ public class BusStationEntity {
 
 	@OneToMany(mappedBy = "busStationEntity")
 	private Set<BusRouteStationEntity> busRouteStations;
+
+  @OneToMany(mappedBy = "busStationEntity")
+	private Set<BusLocationEntity> busLocations;
 }
