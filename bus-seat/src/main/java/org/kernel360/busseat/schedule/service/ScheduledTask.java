@@ -1,9 +1,14 @@
 package org.kernel360.busseat.schedule.service;
 
 import java.net.URI;
+import java.sql.Timestamp;
 import java.util.Map;
 
 import org.kernel360.busseat.schedule.ApiProperties;
+import org.kernel360.busseat.schedule.dto.BusLocation;
+import org.kernel360.busseat.schedule.dto.BusLocationDto;
+import org.kernel360.busseat.schedule.entity.BusLocationEntity;
+import org.kernel360.busseat.schedule.repository.BusLocationRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,8 +18,11 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -22,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ScheduledTask {
 
 	private final ApiProperties apiProperties;
+	private final BusLocationRepository busLocationRepository;
 
 	@Scheduled(fixedRate = 60000) // 180000 밀리초 = 3분
 	public void sendScheduledRequest() {
@@ -38,6 +47,27 @@ public class ScheduledTask {
 
 		// 요청이 보내졌음을 로그로 남김
 		log.info("Scheduled request sent. Response: {}", response);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			BusLocationDto busLocationDto = objectMapper.convertValue(response, BusLocationDto.class);
+			for (BusLocation busLocation : busLocationDto.getMsgBody().getBusLocationList()) {
+				BusLocationEntity busLocationEntity = new BusLocationEntity();
+				busLocationEntity.setEndBus(busLocation.getEndBus());
+				busLocationEntity.setStationId(busLocation.getStationId());
+				busLocationEntity.setPlateNo(busLocation.getPlateNo());
+				busLocationEntity.setPlateType(busLocation.getPlateType());
+				busLocationEntity.setLowPlate(busLocation.getLowPlate());
+				busLocationEntity.setRouteId(busLocation.getRouteId());
+				busLocationEntity.setStationSeq(busLocation.getStationSeq());
+				busLocationEntity.setRemainSeatCount(busLocation.getRemainSeatCount());
+				busLocationEntity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+				busLocationRepository.save(busLocationEntity);
+				log.info("bus_route_location : {}", busLocation.getEndBus());
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static <T> T request(String path, String encodedKey,
