@@ -30,3 +30,5 @@ $ show tabels;
 # location 관련 dummy data 주입 (FE 작업 테스트 용도, Production 에서는 사용해서는 안됨.)
 $ source /var/lib/mysql-files/bulk_insert_route_loations_dummy.sql
 ```
+
+- JDK : Java 17 사용
