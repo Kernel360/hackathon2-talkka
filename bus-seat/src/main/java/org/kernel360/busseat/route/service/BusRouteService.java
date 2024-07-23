@@ -25,10 +25,14 @@ public class BusRouteService {
 			.toList();
 	}
 
-	public List<RouteDto> searchByRouteName(String name) {
+	public List<RouteDto> searchByRouteNames(String name) {
 		return busRouteRepository.findByRouteNameContaining(name).stream()
 			.map(this::toDto)
 			.toList();
+	}
+
+	public RouteDto searchByRouteName(String name) {
+		return toDto(busRouteRepository.findByRouteName(name));
 	}
 
 	private RouteDto toDto(BusRouteEntity entity) {
