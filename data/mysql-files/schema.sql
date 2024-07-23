@@ -54,7 +54,6 @@ CREATE TABLE `USER_COLLECT_REQUEST`
 (
     `user_collect_request_id` BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
     `route_id`                BIGINT(32)   NOT NULL COMMENT '노선 ID',
-    `route_name`              VARCHAR(255) NOT NULL COMMENT '노선 이름',
     `status`                  VARCHAR(255) NOT NULL,
     `created_at`              TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

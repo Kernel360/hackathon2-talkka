@@ -12,8 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRequestDto {
-
 	private Long routeId;
-
-	private String routeName;
 }

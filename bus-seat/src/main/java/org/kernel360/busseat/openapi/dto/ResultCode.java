@@ -1,4 +1,4 @@
-package org.kernel360.busseat.schedule;
+package org.kernel360.busseat.openapi.dto;
 
 public enum ResultCode {
 	SUCCESS(0, "정상적으로 처리되었습니다."),

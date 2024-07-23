@@ -1,4 +1,4 @@
-package org.kernel360.busseat.schedule;
+package org.kernel360.busseat.openapi.dto;
 
 import java.util.List;
 import java.util.Map;
