@@ -23,7 +23,7 @@ CREATE TABLE `BUS_ROUTE`
 DROP TABLE IF EXISTS `BUS_ROUTE_LOCATION`;
 CREATE TABLE `BUS_ROUTE_LOCATION`
 (
-    `BUS_ROUTE_location_id` BIGINT(32)                     NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
+    `bus_route_location_id` BIGINT(32)                     NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
     `route_id`              BIGINT(32)                     NOT NULL COMMENT '교통 API 상 버스 노선 ID',
     `station_id`            BIGINT(32)                     NOT NULL COMMENT '교통 API 상 버스 정류장 ID',
     `station_seq`           SMALLINT                       NOT NULL COMMENT '기점으로부터의 정류장 순서',
@@ -39,14 +39,14 @@ CREATE TABLE `BUS_ROUTE_LOCATION`
 DROP TABLE IF EXISTS `BUS_ROUTE_STATION`;
 CREATE TABLE `BUS_ROUTE_STATION`
 (
-    `bus_route_stop_id` BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
-    `route_id`          BIGINT(32)   NOT NULL,
-    `station_id`        BIGINT(32)   NOT NULL,
-    `station_seq`       SMALLINT     NOT NULL,
-    `station_name`      VARCHAR(100) NOT NULL,
-    `region_name`       VARCHAR(100) NOT NULL,
-    `district_cd`       VARCHAR(100) NOT NULL,
-    `created_at`        TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `bus_route_station_id` BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
+    `route_id`             BIGINT(32)   NOT NULL,
+    `station_id`           BIGINT(32)   NOT NULL,
+    `station_seq`          SMALLINT     NOT NULL,
+    `station_name`         VARCHAR(100) NOT NULL,
+    `region_name`          VARCHAR(100) NOT NULL,
+    `district_cd`          VARCHAR(100) NOT NULL,
+    `created_at`           TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS `USER_COLLECT_REQUEST`;
