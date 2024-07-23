@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BusRouteRepository extends JpaRepository<BusRouteEntity, String> {
-	public List<BusRouteEntity> findByRouteNameContaining(String name);
-	BusRouteEntity findByRouteName(String routeName;
+	List<BusRouteEntity> findByRouteNameContaining(String name);
+
+	BusRouteEntity findByRouteName(String routeName);
 }
