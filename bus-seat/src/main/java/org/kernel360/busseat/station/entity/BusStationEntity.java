@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import org.kernel360.busseat.route_location.entity.BusRouteLocationEntity;
 import org.kernel360.busseat.route_station.entity.BusRouteStationEntity;
-import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

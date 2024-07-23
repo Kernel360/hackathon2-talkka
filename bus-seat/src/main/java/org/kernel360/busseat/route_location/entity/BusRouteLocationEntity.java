@@ -1,4 +1,4 @@
-package org.kernel360.busseat.schedule.entity;
+package org.kernel360.busseat.route_location.entity;
 
 import java.sql.Timestamp;
 

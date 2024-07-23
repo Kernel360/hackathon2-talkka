@@ -1,4 +1,4 @@
-package org.kernel360.busseat.schedule;
+package org.kernel360.busseat.openapi.dto;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

@@ -30,9 +30,6 @@ public class UserRequestEntity {
 	@Column(name = "route_id", nullable = false)
 	private Long routeId;
 
-	@Column(name = "route_name", nullable = false)
-	private String routeName;
-
 	@Column(name = "status", nullable = false)
 	private String status;
 
