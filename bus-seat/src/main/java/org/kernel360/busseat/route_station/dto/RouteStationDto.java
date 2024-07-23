@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RouteStationDto {
-	private Long busRouteStopId;
+	private Long busRouteStationId;
 
 	private Long routeId;
 

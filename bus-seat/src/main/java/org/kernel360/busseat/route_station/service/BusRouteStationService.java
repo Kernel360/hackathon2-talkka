@@ -35,7 +35,7 @@ public class BusRouteStationService {
 
 	private RouteStationDto toDto(BusRouteStationEntity entity) {
 		return RouteStationDto.builder()
-			.busRouteStopId(entity.getBusRouteStopId())
+			.busRouteStationId(entity.getBusRouteStationId())
 			.routeId(entity.getRouteId())
 			.stationId(entity.getStationId())
 			.stationSeq(entity.getStationSeq())
