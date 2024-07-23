@@ -33,6 +33,6 @@ public class BusRouteController {
 		if (routeName == null) {
 			return busRouteService.findAll();
 		}
-		return busRouteService.searchByRouteName(routeName);
+		return busRouteService.searchByRouteNames(routeName);
 	}
 }

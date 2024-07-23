@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BusStationRepository extends JpaRepository<BusStationEntity, Long> {
 	public List<BusStationEntity> findByStationNameContaining(String name);
+
+	BusStationEntity findByStationName(String name);
 }

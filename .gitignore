@@ -1,5 +1,4 @@
 data/mysql-data
 .env
-.env.*
-!.env.samples
+!.env
 .idea

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 
-import org.kernel360.busseat.schedule.entity.BusLocationEntity;
+import org.kernel360.busseat.schedule.entity.BusRouteLocationEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -34,5 +34,5 @@ public class BusStationEntity {
 	private Timestamp createdAt;
 
 	@OneToMany(mappedBy = "busStationEntity")
-	private Set<BusLocationEntity> busLocations;
+	private Set<BusRouteLocationEntity> busLocations;
 }
