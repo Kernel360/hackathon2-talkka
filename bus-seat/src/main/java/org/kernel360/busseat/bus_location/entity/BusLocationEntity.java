@@ -2,15 +2,11 @@ package org.kernel360.busseat.bus_location.entity;
 
 import java.sql.Timestamp;
 
-import org.kernel360.busseat.station.entity.BusStationEntity;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,7 +52,4 @@ public class BusLocationEntity {
 	@Column(name = "created_at", nullable = false)
 	private Timestamp createdAt;
 
-	@ManyToOne
-	@JoinColumn(name = "station_id", insertable = false, updatable = false)
-	private BusStationEntity busStationEntity;
 }

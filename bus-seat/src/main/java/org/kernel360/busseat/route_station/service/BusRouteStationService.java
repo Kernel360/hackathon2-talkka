@@ -1,5 +1,6 @@
 package org.kernel360.busseat.route_station.service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +43,8 @@ public class BusRouteStationService {
 			.districtCd(entity.getDistrictCd())
 			.centerYn(entity.getCenterYn())
 			.turnYn(entity.getTurnYn())
+			.longitude(entity.getLongitude())
+			.latitude(entity.getLatitude())
 			.build();
 	}
 
@@ -55,6 +58,8 @@ public class BusRouteStationService {
 			.districtCd(dto.getDistrictCd())
 			.centerYn(dto.getCenterYn())
 			.turnYn(dto.getTurnYn())
+			.longitude(BigDecimal.valueOf(dto.getX()))
+			.latitude(BigDecimal.valueOf(dto.getY()))
 			.createdAt(new Timestamp(System.currentTimeMillis()))
 			.build();
 	}

@@ -39,16 +39,18 @@ CREATE TABLE `BUS_LOCATION`
 DROP TABLE IF EXISTS `BUS_ROUTE_STATION`;
 CREATE TABLE `BUS_ROUTE_STATION`
 (
-    `bus_route_station_id` BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
-    `station_id`           BIGINT(32)   NOT NULL COMMENT '정류소 아이디',
-    `route_id`             BIGINT(32)   NOT NULL COMMENT '노선 아이디',
-    `station_seq`          INT          NOT NULL COMMENT '정류소 순번',
-    `station_name`         VARCHAR(100) NOT NULL COMMENT '정류소 명칭',
+    `bus_route_station_id` BIGINT(32)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
+    `station_id`           BIGINT(32)      NOT NULL COMMENT '정류소 아이디',
+    `route_id`             BIGINT(32)      NOT NULL COMMENT '노선 아이디',
+    `station_seq`          INT             NOT NULL COMMENT '정류소 순번',
+    `station_name`         VARCHAR(100)    NOT NULL COMMENT '정류소 명칭',
     `region_name`          VARCHAR(30) COMMENT '정류소 위치 지역명',
-    `district_cd`          VARCHAR(30)  NOT NULL COMMENT '노선 관할 지역 코드',
-    `center_yn`            VARCHAR(30)           DEFAULT 'N' COMMENT '중앙차로 여부 (N: 일반, Y: 중앙차로)',
-    `turn_yn`              VARCHAR(30)           DEFAULT 'N' COMMENT '회차점 여부 (N: 일반, Y: 회차점)',
-    `created_at`           TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `district_cd`          VARCHAR(30)     NOT NULL COMMENT '노선 관할 지역 코드',
+    `center_yn`            VARCHAR(30)              DEFAULT 'N' COMMENT '중앙차로 여부 (N: 일반, Y: 중앙차로)',
+    `turn_yn`              VARCHAR(30)              DEFAULT 'N' COMMENT '회차점 여부 (N: 일반, Y: 회차점)',
+    `longitude`            DECIMAL(17, 14) NOT NULL COMMENT '정류소 경도',
+    `latitude`             DECIMAL(17, 14) NOT NULL COMMENT '정류소 위도',
+    `created_at`           TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS `USER_COLLECT_REQUEST`;
