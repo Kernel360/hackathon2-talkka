@@ -35,7 +35,7 @@ public abstract class AbstractOpenApiService<BODY, RESPONSE_DTO extends ApiRespo
 	 * @param params 요청 파라미터
 	 * @return OpenAPI 응답
 	 */
-	public RESPONSE_DTO request(MultiValueMap<String, String> params,
+	protected RESPONSE_DTO request(MultiValueMap<String, String> params,
 		Class<RESPONSE_DTO> clazz) throws OpenApiException {
 		final RestTemplate restTemplate = new RestTemplate();
 		final URI uri = this.getOpenApiURI(params);

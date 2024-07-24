@@ -16,7 +16,7 @@ public class UserRequestController {
 	private final UserRequestService userRequestService;
 
 	@PostMapping()
-	public UserRequestDto create(@RequestBody UserRequestDto userRequestDto) {
-		return userRequestService.create(userRequestDto);
+	public void create(@RequestBody UserRequestDto userRequestDto) {
+		userRequestService.create(userRequestDto);
 	}
 }

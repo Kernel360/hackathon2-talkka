@@ -15,9 +15,9 @@ public class RouteInfoItemApiService extends AbstractOpenApiService<RouteInfoIte
 		super(routeInfoItemApiProperty, publicOpenApiProperty);
 	}
 
-	public MultiValueMap<String, String> getQueryParameters(Long routeId) {
+	public RouteInfoItemApiResponse request(String routeId) {
 		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.add("routeId", routeId.toString());
-		return params;
+		params.add("routeId", routeId);
+		return request(params, RouteInfoItemApiResponse.class);
 	}
 }

@@ -18,9 +18,9 @@ public class BusRouteStationApiService
 		super(apiProperties, publicOpenApiProperty);
 	}
 
-	public MultiValueMap<String, String> getQueryParameters(Long routeId) {
-		final MultiValueMap<String, String> queryParameters = new LinkedMultiValueMap<>();
-		queryParameters.add("routeId", routeId.toString());
-		return queryParameters;
+	public BusRouteStationListResponse request(String routeId) {
+		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+		params.add("routeId", routeId);
+		return request(params, BusRouteStationListResponse.class);
 	}
 }

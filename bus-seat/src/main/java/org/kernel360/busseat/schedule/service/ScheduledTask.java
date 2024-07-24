@@ -5,7 +5,7 @@ import java.util.List;
 import org.kernel360.busseat.bus_location.service.BusLocationService;
 import org.kernel360.busseat.openapi.dto.BusLocationApiResponse;
 import org.kernel360.busseat.openapi.service.BusLocationApiService;
-import org.kernel360.busseat.user_request.dto.UserRequestDto;
+import org.kernel360.busseat.user_request.dto.UserRequest;
 import org.kernel360.busseat.user_request.service.UserRequestService;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -29,14 +29,12 @@ public class ScheduledTask {
 		log.info("ScheduledTask.executeTasks()");
 
 		// get user requests;
-		final List<UserRequestDto> userRequests = userRequestService.findAll();
+		final List<UserRequest> userRequests = userRequestService.findAll();
 
 		// request bus locations
-		for (UserRequestDto userRequest : userRequests) {
+		for (UserRequest userRequest : userRequests) {
 			// create
-			final BusLocationApiResponse busLocationApiResponse = busLocationApiService.request(
-				busLocationApiService.getQueryParameters(userRequest),
-				BusLocationApiResponse.class);
+			final BusLocationApiResponse busLocationApiResponse = busLocationApiService.request(userRequest);
 			log.info("response {} ", busLocationApiResponse.toString());
 
 			// save

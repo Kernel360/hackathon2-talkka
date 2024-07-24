@@ -63,4 +63,8 @@ public class BusRouteStationService {
 			.createdAt(new Timestamp(System.currentTimeMillis()))
 			.build();
 	}
+
+	public void saveAll(List<BusRouteStationEntity> entities) {
+		this.busRouteStationRepository.saveAll(entities);
+	}
 }

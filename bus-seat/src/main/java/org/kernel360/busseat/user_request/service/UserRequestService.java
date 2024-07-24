@@ -3,13 +3,23 @@ package org.kernel360.busseat.user_request.service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.kernel360.busseat.route.entity.BusRouteEntity;
+import org.kernel360.busseat.openapi.dto.BusRouteStationListBody;
+import org.kernel360.busseat.openapi.dto.BusRouteStationListResponse;
+import org.kernel360.busseat.openapi.dto.RouteInfoItemApiResponse;
+import org.kernel360.busseat.openapi.service.BusRouteStationApiService;
+import org.kernel360.busseat.openapi.service.RouteInfoItemApiService;
 import org.kernel360.busseat.route.repository.BusRouteRepository;
+import org.kernel360.busseat.route_info_item.entity.RouteInfoItemEntity;
+import org.kernel360.busseat.route_info_item.repository.RouteInfoItemRepository;
+import org.kernel360.busseat.route_info_item.service.RouteInfoItemService;
+import org.kernel360.busseat.route_station.service.BusRouteStationService;
+import org.kernel360.busseat.user_request.dto.UserRequest;
 import org.kernel360.busseat.user_request.dto.UserRequestDto;
 import org.kernel360.busseat.user_request.entity.UserRequestEntity;
 import org.kernel360.busseat.user_request.repository.UserRequestRepository;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,34 +28,55 @@ public class UserRequestService {
 
 	private final UserRequestRepository userRequestRepository;
 
+	private final RouteInfoItemRepository routeInfoItemRepository;
+	private final RouteInfoItemApiService routeInfoItemApiService;
+	private final RouteInfoItemService routeInfoItemService;
+
 	private final BusRouteRepository busRouteRepository;
-	
-	public UserRequestDto create(UserRequestDto userRequestDto) {
-		final Timestamp now = new Timestamp(System.currentTimeMillis());
-		// 추후 검증을 위한 코드(현재는 실질적으로 사용 x)
-		final BusRouteEntity busRouteEntity = busRouteRepository.findById(
-			String.valueOf(userRequestDto.getRouteId())).orElseThrow(() -> new RuntimeException("해당하는 노선이 없습니다."));
-		final var userRequest = userRequestRepository.findById(userRequestDto.getRouteId());
-		if (userRequest.isPresent()) {
-			return toDto(userRequest.get());
+
+	private final BusRouteStationApiService busRouteStationApiService;
+	private final BusRouteStationService busRouteStationService;
+
+	@Transactional
+	public void create(UserRequestDto userRequestDto) {
+		// check if routeId is valid
+		final var exist = routeInfoItemRepository.findByRouteName(userRequestDto.getRouteName());
+		if (exist != null) {
+			return;
 		}
-		final var entity = UserRequestEntity.builder()
-			.routeId(busRouteEntity.getRouteId())
+
+		// get route info
+		final Long routeId = busRouteRepository.findByRouteName(userRequestDto.getRouteName()).getRouteId();
+		final RouteInfoItemApiResponse infoResponse = routeInfoItemApiService.request(routeId.toString());
+		final var routeInfoItem = infoResponse.getMsgBody().get(0);
+		final RouteInfoItemEntity routeInfoItemEntity = routeInfoItemService.toEntity(routeInfoItem);
+		final var saved = routeInfoItemRepository.save(routeInfoItemEntity);
+
+		// get route station info
+		final BusRouteStationListResponse stationResponse = busRouteStationApiService.request(routeId.toString());
+		final List<BusRouteStationListBody> stationList = stationResponse.getMsgBody();
+		final var stationListEntity = stationList.stream()
+			.map((it) -> busRouteStationService.toEntity(it, saved.getRouteId()))
+			.toList();
+		busRouteStationService.saveAll(stationListEntity);
+
+		//	save user request
+		final UserRequestEntity userRequestEntity = UserRequestEntity.builder()
+			.routeId(routeId)
 			.status("OK")
-			.createdAt(now)
+			.createdAt(new Timestamp(System.currentTimeMillis()))
 			.build();
-		final var saveEntity = userRequestRepository.save(entity);
-		return toDto(saveEntity);
+		userRequestRepository.save(userRequestEntity);
 	}
 
-	public List<UserRequestDto> findAll() {
+	public List<UserRequest> findAll() {
 		return userRequestRepository.findAll().stream()
 			.map(this::toDto)
 			.toList();
 	}
 
-	private UserRequestDto toDto(UserRequestEntity userRequestEntity) {
-		return UserRequestDto.builder()
+	private UserRequest toDto(UserRequestEntity userRequestEntity) {
+		return UserRequest.builder()
 			.routeId(userRequestEntity.getRouteId())
 			.build();
 	}
