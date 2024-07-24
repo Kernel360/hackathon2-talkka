@@ -1,13 +1,13 @@
-package org.kernel360.busseat.route_info_item.entity;
+package org.kernel360.busseat.route.entity;
 
-import org.kernel360.busseat.route.entity.BusRouteEntity;
+import java.util.Set;
+
+import org.kernel360.busseat.route_station.entity.RouteStationEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,14 +17,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "bus_route_info_item")
-public class RouteInfoItemEntity {
+@Entity(name = "bus_route")
+public class RouteEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long busRouteInfoItemId; // 노선 상세 아이디
-
 	@Column(name = "route_id", nullable = false)
-	private Long routeId;           // 노선 아이디
+	private Long routeId;
 
 	@Column(name = "route_name", nullable = false, length = 100)
 	private String routeName;       // 노선 번호
@@ -83,6 +80,6 @@ public class RouteInfoItemEntity {
 	@Column(name = "n_peek_alloc", nullable = false)
 	private int nPeekAlloc;         // 평일 최대 배차 시간
 
-	@OneToOne(mappedBy = "routeInfoItemEntity")
-	private BusRouteEntity busRouteEntity;
+	@OneToMany(mappedBy = "routeEntity")
+	private Set<RouteStationEntity> routeStationEntity;
 }

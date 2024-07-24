@@ -3,7 +3,8 @@ package org.kernel360.busseat.openapi.service;
 import java.net.URI;
 
 import org.kernel360.busseat.openapi.configuration.ApiPropertyInterface;
-import org.kernel360.busseat.openapi.configuration.PublicOpenApiProperty;
+import org.kernel360.busseat.openapi.configuration.ApiServiceKeyPropertyInterface;
+import org.kernel360.busseat.openapi.configuration.PublicApiServiceKeyProperty;
 import org.kernel360.busseat.openapi.dto.ApiResponseInterface;
 import org.kernel360.busseat.openapi.dto.ResultCode;
 import org.kernel360.busseat.openapi.exception.OpenApiException;
@@ -19,12 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class AbstractOpenApiService<BODY, RESPONSE_DTO extends ApiResponseInterface<BODY>> {
 
 	private final ApiPropertyInterface apiProperties;
-	private final PublicOpenApiProperty publicOpenApiProperty;
+	private final ApiServiceKeyPropertyInterface apiServiceKeyPropertyInterface;
 
-	public AbstractOpenApiService(ApiPropertyInterface apiProperties, PublicOpenApiProperty publicOpenApiProperty) {
+	public AbstractOpenApiService(ApiPropertyInterface apiProperties,
+		PublicApiServiceKeyProperty apiServiceKeyPropertyInterface) {
 		this.apiProperties = apiProperties;
-		this.publicOpenApiProperty = publicOpenApiProperty;
-		log.info("serviceKey: {}", this.publicOpenApiProperty.getRollingKey());
+		this.apiServiceKeyPropertyInterface = apiServiceKeyPropertyInterface;
+		log.info("serviceKey: {}", this.apiServiceKeyPropertyInterface.getRollingKey());
 	}
 
 	/**
@@ -73,7 +75,7 @@ public abstract class AbstractOpenApiService<BODY, RESPONSE_DTO extends ApiRespo
 			.scheme("https")
 			.host(this.apiProperties.getHost())
 			.path(this.apiProperties.getPath())
-			.queryParam("serviceKey", this.publicOpenApiProperty.getRollingKey())
+			.queryParam("serviceKey", this.apiServiceKeyPropertyInterface.getRollingKey())
 			.queryParams(params)
 			.build();
 	}

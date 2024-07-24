@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @JacksonXmlRootElement(localName = "busRouteInfoItem")
-public class RouteInfoItemApiBody {
+public class BusRouteInfoItemApiBody {
 	private String companyId;           // 운수업체 아이디
 	private String companyName;         // 운수업체명
 	private String companyTel;          // 운수업체 전화번호

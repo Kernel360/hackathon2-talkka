@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "openapi.public.route-info-item")
-public class RouteInfoItemApiProperty implements ApiPropertyInterface {
+public class BusRouteInfoItemApiProperty implements ApiPropertyInterface {
 	private String host;
 	private String path;
 }

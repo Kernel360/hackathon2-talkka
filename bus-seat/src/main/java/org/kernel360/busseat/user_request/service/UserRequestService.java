@@ -3,16 +3,15 @@ package org.kernel360.busseat.user_request.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.kernel360.busseat.openapi.dto.BusRouteInfoItemApiResponse;
 import org.kernel360.busseat.openapi.dto.BusRouteStationListBody;
 import org.kernel360.busseat.openapi.dto.BusRouteStationListResponse;
-import org.kernel360.busseat.openapi.dto.RouteInfoItemApiResponse;
+import org.kernel360.busseat.openapi.service.BusRouteInfoItemApiService;
 import org.kernel360.busseat.openapi.service.BusRouteStationApiService;
-import org.kernel360.busseat.openapi.service.RouteInfoItemApiService;
-import org.kernel360.busseat.route.repository.BusRouteRepository;
-import org.kernel360.busseat.route_info_item.entity.RouteInfoItemEntity;
-import org.kernel360.busseat.route_info_item.repository.RouteInfoItemRepository;
-import org.kernel360.busseat.route_info_item.service.RouteInfoItemService;
-import org.kernel360.busseat.route_station.service.BusRouteStationService;
+import org.kernel360.busseat.route.entity.RouteEntity;
+import org.kernel360.busseat.route.repository.RouteRepository;
+import org.kernel360.busseat.route.service.RouteService;
+import org.kernel360.busseat.route_station.service.RouteStationService;
 import org.kernel360.busseat.user_request.dto.UserRequest;
 import org.kernel360.busseat.user_request.dto.UserRequestDto;
 import org.kernel360.busseat.user_request.entity.UserRequestEntity;
@@ -28,37 +27,36 @@ public class UserRequestService {
 
 	private final UserRequestRepository userRequestRepository;
 
-	private final RouteInfoItemRepository routeInfoItemRepository;
-	private final RouteInfoItemApiService routeInfoItemApiService;
-	private final RouteInfoItemService routeInfoItemService;
+	private final BusRouteInfoItemApiService busRouteInfoItemApiService;
+	private final RouteService routeService;
 
-	private final BusRouteRepository busRouteRepository;
+	private final RouteRepository routeRepository;
 
 	private final BusRouteStationApiService busRouteStationApiService;
-	private final BusRouteStationService busRouteStationService;
+	private final RouteStationService routeStationService;
 
 	@Transactional
 	public void create(UserRequestDto userRequestDto) {
 		// check if routeId is valid
-		final var exist = routeInfoItemRepository.findByRouteName(userRequestDto.getRouteName());
-		if (exist != null) {
+		final var routeId = userRequestDto.getRouteId();
+		final var exist = routeRepository.findById(routeId);
+		if (exist.isPresent()) {
 			return;
 		}
 
 		// get route info
-		final Long routeId = busRouteRepository.findByRouteName(userRequestDto.getRouteName()).getRouteId();
-		final RouteInfoItemApiResponse infoResponse = routeInfoItemApiService.request(routeId.toString());
+		final BusRouteInfoItemApiResponse infoResponse = busRouteInfoItemApiService.request(routeId.toString());
 		final var routeInfoItem = infoResponse.getMsgBody().get(0);
-		final RouteInfoItemEntity routeInfoItemEntity = routeInfoItemService.toEntity(routeInfoItem);
-		final var saved = routeInfoItemRepository.save(routeInfoItemEntity);
+		final RouteEntity routeInfoItemEntity = routeService.toEntity(routeInfoItem);
+		final var saved = routeRepository.save(routeInfoItemEntity);
 
 		// get route station info
 		final BusRouteStationListResponse stationResponse = busRouteStationApiService.request(routeId.toString());
 		final List<BusRouteStationListBody> stationList = stationResponse.getMsgBody();
 		final var stationListEntity = stationList.stream()
-			.map((it) -> busRouteStationService.toEntity(it, saved.getRouteId()))
+			.map((it) -> routeStationService.toEntity(it, saved.getRouteId()))
 			.toList();
-		busRouteStationService.saveAll(stationListEntity);
+		routeStationService.saveAll(stationListEntity);
 
 		//	save user request
 		final UserRequestEntity userRequestEntity = UserRequestEntity.builder()

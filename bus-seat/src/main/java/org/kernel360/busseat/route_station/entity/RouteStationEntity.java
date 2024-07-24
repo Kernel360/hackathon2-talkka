@@ -3,7 +3,7 @@ package org.kernel360.busseat.route_station.entity;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import org.kernel360.busseat.route.entity.BusRouteEntity;
+import org.kernel360.busseat.route.entity.RouteEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity(name = "bus_route_station")
-public class BusRouteStationEntity {
+public class RouteStationEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long busRouteStationId;
@@ -63,5 +63,5 @@ public class BusRouteStationEntity {
 	// 연관 관계
 	@ManyToOne
 	@JoinColumn(name = "route_id", insertable = false, updatable = false)
-	private BusRouteEntity busRouteEntity;
+	private RouteEntity routeEntity;
 }

@@ -18,11 +18,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @JacksonXmlRootElement(localName = "response")
-public class RouteInfoItemApiResponse implements ApiResponseInterface<RouteInfoItemApiBody> {
+public class BusRouteInfoItemApiResponse implements ApiResponseInterface<BusRouteInfoItemApiBody> {
 	@JacksonXmlProperty(localName = "comMsgHeader")
 	private Map<String, String> comMsgHeader;
 	@JacksonXmlProperty(localName = "msgHeader")
 	private Map<String, String> msgHeader;
 	@JacksonXmlProperty(localName = "msgBody")
-	private List<RouteInfoItemApiBody> msgBody;
+	private List<BusRouteInfoItemApiBody> msgBody;
 }

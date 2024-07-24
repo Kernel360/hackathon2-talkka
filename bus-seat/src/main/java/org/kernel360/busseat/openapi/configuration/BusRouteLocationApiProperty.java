@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "openapi.public.route-location")
-public class RouteLocationApiProperty implements ApiPropertyInterface {
+public class BusRouteLocationApiProperty implements ApiPropertyInterface {
 	private String host;
 	private String path;
 }
