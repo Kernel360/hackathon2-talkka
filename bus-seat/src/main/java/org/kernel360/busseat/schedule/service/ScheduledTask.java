@@ -24,7 +24,7 @@ public class ScheduledTask {
 	private final BusLocationService busLocationService;
 	private final UserRequestService userRequestService;
 
-	@Scheduled(fixedRate = 10000) // 180000 밀리초 = 3분
+	@Scheduled(fixedRate = 180000) // 180000 밀리초 = 3분
 	public void executeTasks() {
 		log.info("ScheduledTask.executeTasks()");
 
