@@ -25,4 +25,8 @@ public class RouteStationDto {
 	private String regionName;
 
 	private String districtCd;
+
+	private String centerYn;
+
+	private String turnYn;
 }

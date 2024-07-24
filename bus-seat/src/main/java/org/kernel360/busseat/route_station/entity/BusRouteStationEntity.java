@@ -13,15 +13,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity(name = "bus_route_station")
 public class BusRouteStationEntity {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long busRouteStationId;
@@ -43,6 +44,12 @@ public class BusRouteStationEntity {
 
 	@Column(name = "district_cd", nullable = false)
 	private String districtCd;
+
+	@Column(name = "center_yn", nullable = false)
+	private String centerYn;
+
+	@Column(name = "turn_yn", nullable = false)
+	private String turnYn;
 
 	@Column(name = "created_at", nullable = false)
 	private Timestamp createdAt;

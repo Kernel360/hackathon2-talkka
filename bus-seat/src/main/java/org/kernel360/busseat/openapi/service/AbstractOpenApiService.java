@@ -7,7 +7,6 @@ import org.kernel360.busseat.openapi.configuration.PublicOpenApiProperty;
 import org.kernel360.busseat.openapi.dto.ApiResponseInterface;
 import org.kernel360.busseat.openapi.dto.ResultCode;
 import org.kernel360.busseat.openapi.exception.OpenApiException;
-import org.kernel360.busseat.user_request.dto.UserRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
@@ -66,8 +65,6 @@ public abstract class AbstractOpenApiService<BODY, RESPONSE_DTO extends ApiRespo
 			throw new OpenApiException("파싱 과정의 오류", e);
 		}
 	}
-
-	public abstract MultiValueMap<String, String> getQueryParameters(UserRequestDto userRequestDto);
 
 	private URI getOpenApiURI(MultiValueMap<String, String> params) {
 		final var builder = new DefaultUriBuilderFactory();

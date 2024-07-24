@@ -7,14 +7,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity(name = "bus_route_info_item")
 public class RouteInfoItemEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bus_route_info_item_id")
 	private Long busRouteInfoItemId; // 노선 상세 아이디
 
 	@Column(name = "route_id", nullable = false)
@@ -77,7 +83,6 @@ public class RouteInfoItemEntity {
 	@Column(name = "n_peek_alloc", nullable = false)
 	private int nPeekAlloc;         // 평일 최대 배차 시간
 
-	@OneToOne
-	@MapsId
+	@OneToOne(mappedBy = "routeInfoItemEntity")
 	private BusRouteEntity busRouteEntity;
 }

@@ -4,7 +4,6 @@ import org.kernel360.busseat.openapi.configuration.PublicOpenApiProperty;
 import org.kernel360.busseat.openapi.configuration.RouteInfoItemApiProperty;
 import org.kernel360.busseat.openapi.dto.RouteInfoItemApiBody;
 import org.kernel360.busseat.openapi.dto.RouteInfoItemApiResponse;
-import org.kernel360.busseat.user_request.dto.UserRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -16,10 +15,9 @@ public class RouteInfoItemApiService extends AbstractOpenApiService<RouteInfoIte
 		super(routeInfoItemApiProperty, publicOpenApiProperty);
 	}
 
-	@Override
-	public MultiValueMap<String, String> getQueryParameters(UserRequestDto userRequestDto) {
+	public MultiValueMap<String, String> getQueryParameters(Long routeId) {
 		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.add("routeId", userRequestDto.getRouteId().toString());
+		params.add("routeId", routeId.toString());
 		return params;
 	}
 }
