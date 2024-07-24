@@ -58,3 +58,29 @@ CREATE TABLE `USER_COLLECT_REQUEST`
     `created_at`              TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+
+DROP TABLE IF EXISTS `BUS_ROUTE_INFO_ITEM`;
+CREATE TABLE `BUS_ROUTE_INFO_ITEM`
+(
+    bus_route_info_item_id BIGINT(32) PRIMARY KEY AUTO_INCREMENT, -- 노선 상세 아이디
+    route_id               BIGINT(32)   NOT NULL,                 -- 노선 아이디
+    route_name             VARCHAR(100) NOT NULL,                 -- 노선 번호
+    route_type_cd          INT          NOT NULL,                 -- 노선 유형 코드
+    route_type_name        VARCHAR(50)  NOT NULL,                 -- 노선 유형명
+    company_id             VARCHAR(20)  NOT NULL,                 -- 운수업체 아이디
+    company_name           VARCHAR(50)  NOT NULL,                 -- 운수업체명
+    company_tel            VARCHAR(15),                           -- 운수업체 전화번호
+    district_cd            INT          NOT NULL,                 -- 관할 지역 코드
+    up_first_time          VARCHAR(20)  NOT NULL,                 -- 평일 기점 첫차 시간
+    up_last_time           VARCHAR(20)  NOT NULL,                 -- 평일 기점 막차 시간
+    down_first_time        VARCHAR(20)  NOT NULL,                 -- 평일 종점 첫차 시간
+    down_last_time         VARCHAR(20)  NOT NULL,                 -- 평일 종점 막차 시간
+    start_mobile_no        VARCHAR(10),                           -- 기점 정류소 번호
+    start_station_id       BIGINT(32)   NOT NULL,                 -- 기점 정류소 아이디
+    start_station_name     VARCHAR(100) NOT NULL,                 -- 기점 정류소명
+    end_station_id         BIGINT(32)   NOT NULL,                 -- 종점 정류소 아이디
+    end_station_name       VARCHAR(100) NOT NULL,                 -- 종점 정류소명
+    region_name            VARCHAR(100),                          -- 지역명
+    peek_alloc             INT          NOT NULL,                 -- 평일 최소 배차 시간
+    n_peek_alloc           INT          NOT NULL                  -- 평일 최대 배차 시간
+);

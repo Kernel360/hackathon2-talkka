@@ -19,7 +19,7 @@ public class UserRequestService {
 	private final UserRequestRepository userRequestRepository;
 
 	private final BusRouteRepository busRouteRepository;
-
+	
 	public UserRequestDto create(UserRequestDto userRequestDto) {
 		final Timestamp now = new Timestamp(System.currentTimeMillis());
 		// 추후 검증을 위한 코드(현재는 실질적으로 사용 x)
