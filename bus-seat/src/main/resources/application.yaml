@@ -27,6 +27,10 @@ openapi:
     bus-route-station:
       host: apis.data.go.kr
       path: /6410000/busrouteservice/getBusRouteStationList
+    bus-route-list:
+      host: apis.data.go.kr
+      path: /6410000/busrouteservice/getBusRouteList
+
     service-key:
       keys:
         - ${SERVICE_KEY_1}

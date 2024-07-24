@@ -1,4 +1,7 @@
-package org.kernel360.busseat.route_info_item.dto;
+package org.kernel360.busseat.route.dto;
+
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RouteInfoItemDto {
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class RouteSearchResponseDto {
 	private Long routeId;
 	private String routeName;
-	private String stationStart;
-	private String stationEnd;
 	private String regionName;
 }
