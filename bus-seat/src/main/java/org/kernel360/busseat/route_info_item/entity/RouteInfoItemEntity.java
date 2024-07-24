@@ -1,10 +1,14 @@
 package org.kernel360.busseat.route_info_item.entity;
 
+import org.kernel360.busseat.route.entity.BusRouteEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "bus_route_info_item")
 public class RouteInfoItemEntity {
@@ -72,4 +76,8 @@ public class RouteInfoItemEntity {
 
 	@Column(name = "n_peek_alloc", nullable = false)
 	private int nPeekAlloc;         // 평일 최대 배차 시간
+
+	@OneToOne
+	@MapsId
+	private BusRouteEntity busRouteEntity;
 }

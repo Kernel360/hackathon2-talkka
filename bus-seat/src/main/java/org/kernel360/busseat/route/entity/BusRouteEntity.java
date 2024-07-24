@@ -3,11 +3,15 @@ package org.kernel360.busseat.route.entity;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import org.kernel360.busseat.route_info_item.entity.RouteInfoItemEntity;
 import org.kernel360.busseat.route_station.entity.BusRouteStationEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,4 +30,7 @@ public class BusRouteEntity {
 
 	@OneToMany(mappedBy = "busRouteEntity")
 	private Set<BusRouteStationEntity> busRouteStationEntity;
+
+	@OneToOne(mappedBy = "busRouteEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private RouteInfoItemEntity routeInfoItemEntity;
 }
