@@ -22,7 +22,7 @@ public class BusRouteStationController {
 		return busRouteStationService.findById(routeStationId).orElse(null);
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	public List<RouteStationDto> findAll() {
 		return busRouteStationService.findAll();
 	}
@@ -32,8 +32,4 @@ public class BusRouteStationController {
 		return busRouteStationService.findByRouteId(routeId);
 	}
 
-	@GetMapping("/route/{routeId}/seq/{seq}")
-	public RouteStationDto findByRouteIdAndSeq(@PathVariable("routeId") Long routeId, @PathVariable("seq") Short seq) {
-		return busRouteStationService.findByRouteIdAndSeq(routeId, seq).orElse(null);
-	}
 }
