@@ -3,7 +3,9 @@ package org.kernel360.busseat.route.controller;
 import java.util.Optional;
 
 import org.kernel360.busseat.common.dto.PaginationDto;
+import org.kernel360.busseat.route.dto.DataDto;
 import org.kernel360.busseat.route.dto.RouteDto;
+import org.kernel360.busseat.route.dto.RouteSearchResponseDto;
 import org.kernel360.busseat.route.dto.StationsDto;
 import org.kernel360.busseat.route.service.BusRouteService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +38,11 @@ public class BusRouteController {
 		return busRouteService.getStationNamesByRouteName(search, page_number, page_size);
 	}
 
+	@GetMapping("/search/{keyword}")
+	public DataDto<RouteSearchResponseDto> searchByRouteName(
+		@PathVariable("keyword") String keyword
+	) {
+		return busRouteService.getRoutesFromApi(keyword);
+	}
 }
 

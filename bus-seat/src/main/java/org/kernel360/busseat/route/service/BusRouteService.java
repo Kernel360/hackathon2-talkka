@@ -5,7 +5,10 @@ import java.util.Optional;
 
 import org.kernel360.busseat.common.dto.Pagination;
 import org.kernel360.busseat.common.dto.PaginationDto;
+import org.kernel360.busseat.openapi.service.BusRouteListApiService;
+import org.kernel360.busseat.route.dto.DataDto;
 import org.kernel360.busseat.route.dto.RouteDto;
+import org.kernel360.busseat.route.dto.RouteSearchResponseDto;
 import org.kernel360.busseat.route.dto.StationsDto;
 import org.kernel360.busseat.route.entity.BusRouteEntity;
 import org.kernel360.busseat.route.repository.BusRouteRepository;
@@ -23,31 +26,29 @@ import lombok.RequiredArgsConstructor;
 public class BusRouteService {
 	private final BusRouteRepository busRouteRepository;
 	private final BusRouteStationRepository busRouteStationRepository;
+	private final BusRouteListApiService busRouteListApiService;
 
 	public Optional<RouteDto> findBusRouteById(Long routeId) {
 		return busRouteRepository.findById(String.valueOf(routeId)).map(this::toDto);
-	}
-
-	public List<RouteDto> findAll() {
-		return busRouteRepository.findAll().stream()
-			.map(this::toDto)
-			.toList();
-	}
-
-	public List<RouteDto> searchByRouteNames(String name) {
-		return busRouteRepository.findByRouteNameContaining(name).stream()
-			.map(this::toDto)
-			.toList();
-	}
-
-	public RouteDto searchByRouteName(String name) {
-		return toDto(busRouteRepository.findByRouteName(name));
 	}
 
 	private RouteDto toDto(BusRouteEntity entity) {
 		return RouteDto.builder()
 			.routeId(entity.getRouteId())
 			.routeName(entity.getRouteName())
+			.build();
+	}
+
+	public DataDto<RouteSearchResponseDto> getRoutesFromApi(String keyword) {
+		final var response = busRouteListApiService.request(keyword);
+		return DataDto.<RouteSearchResponseDto>builder()
+			.data(response.getMsgBody().stream().map(
+				it -> RouteSearchResponseDto.builder()
+					.routeId(it.getRouteId())
+					.routeName(it.getRouteName())
+					.regionName(it.getRegionName())
+					.build()
+			).toList())
 			.build();
 	}
 

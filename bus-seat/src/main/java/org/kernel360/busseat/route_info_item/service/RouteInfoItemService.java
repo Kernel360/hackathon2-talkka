@@ -56,6 +56,7 @@ public class RouteInfoItemService {
 				.routeName(entity.getRouteName())
 				.stationStart(entity.getStartStationName())
 				.stationEnd(entity.getEndStationName())
+				.regionName(entity.getRegionName())
 				.build())
 			.collect(Collectors.toList());
 
