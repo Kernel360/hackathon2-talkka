@@ -27,5 +27,3 @@ openapi:
     service-key:
       keys:
         - ${SERVICE_KEY_1}
-        - ${SERVICE_KEY_2}
-        - ${SERVICE_KEY_3}
