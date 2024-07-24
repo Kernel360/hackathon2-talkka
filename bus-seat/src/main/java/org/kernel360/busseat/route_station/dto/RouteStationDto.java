@@ -18,7 +18,7 @@ public class RouteStationDto {
 
 	private Long stationId;
 
-	private Short stationSeq;
+	private Integer stationSeq;
 
 	private String stationName;
 

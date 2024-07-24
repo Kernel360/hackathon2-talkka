@@ -16,6 +16,11 @@ spring:
     show-sql: true
 
 
-
-api:
-  service-key: TQYeUX25oLesrcArkbmATzmHTZixRrV8XzWJY4dgVpSbcX3r4DI7khF9mXBh17qriJRVlxmKG%2FQWa1IYm%2Ba1xw%3D%3D
+openapi:
+  public:
+    route-location:
+      host: apis.data.go.kr
+      path: /6410000/buslocationservice/getBusLocationList
+    service-key:
+      keys:
+        - ${SERVICE_KEY_1}

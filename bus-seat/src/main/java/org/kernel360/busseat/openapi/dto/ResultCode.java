@@ -42,4 +42,13 @@ public enum ResultCode {
 		}
 		return SYSTEM_ERROR; // Default to system error for unknown codes
 	}
+
+	public static ResultCode fromCode(String code) {
+		for (ResultCode resultCode : values()) {
+			if (resultCode.getCode() == Integer.parseInt(code)) {
+				return resultCode;
+			}
+		}
+		return SYSTEM_ERROR; // Default to system error for unknown codes
+	}
 }
