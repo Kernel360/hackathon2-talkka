@@ -29,11 +29,12 @@ public class BusRouteController {
 	}
 
 	@PostMapping("/bus-station")
-	public PaginationDto<StationsDto> RequestRoute(
+	public PaginationDto<StationsDto> RequestStations(
 		@RequestParam String search,
 		@RequestParam int page_number,
 		@RequestParam int page_size) {
 		return busRouteService.getStationNamesByRouteName(search, page_number, page_size);
 	}
+
 }
 
