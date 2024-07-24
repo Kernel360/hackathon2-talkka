@@ -40,12 +40,14 @@ DROP TABLE IF EXISTS `BUS_ROUTE_STATION`;
 CREATE TABLE `BUS_ROUTE_STATION`
 (
     `bus_route_station_id` BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
-    `route_id`             BIGINT(32)   NOT NULL,
-    `station_id`           BIGINT(32)   NOT NULL,
-    `station_seq`          INT          NOT NULL,
-    `station_name`         VARCHAR(100) NOT NULL,
-    `region_name`          VARCHAR(100) NOT NULL,
-    `district_cd`          VARCHAR(100) NOT NULL,
+    `station_id`           BIGINT(32)   NOT NULL COMMENT '정류소 아이디',
+    `route_id`             BIGINT(32)   NOT NULL COMMENT '노선 아이디',
+    `station_seq`          INT          NOT NULL COMMENT '정류소 순번',
+    `station_name`         VARCHAR(100) NOT NULL COMMENT '정류소 명칭',
+    `region_name`          VARCHAR(30) COMMENT '정류소 위치 지역명',
+    `district_cd`          VARCHAR(30)  NOT NULL COMMENT '노선 관할 지역 코드',
+    `center_yn`            VARCHAR(30)           DEFAULT 'N' COMMENT '중앙차로 여부 (N: 일반, Y: 중앙차로)',
+    `turn_yn`              VARCHAR(30)           DEFAULT 'N' COMMENT '회차점 여부 (N: 일반, Y: 회차점)',
     `created_at`           TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -62,25 +64,25 @@ CREATE TABLE `USER_COLLECT_REQUEST`
 DROP TABLE IF EXISTS `BUS_ROUTE_INFO_ITEM`;
 CREATE TABLE `BUS_ROUTE_INFO_ITEM`
 (
-    bus_route_info_item_id BIGINT(32) PRIMARY KEY AUTO_INCREMENT, -- 노선 상세 아이디
-    route_id               BIGINT(32)   NOT NULL,                 -- 노선 아이디
-    route_name             VARCHAR(100) NOT NULL,                 -- 노선 번호
-    route_type_cd          INT          NOT NULL,                 -- 노선 유형 코드
-    route_type_name        VARCHAR(50)  NOT NULL,                 -- 노선 유형명
-    company_id             VARCHAR(20)  NOT NULL,                 -- 운수업체 아이디
-    company_name           VARCHAR(50)  NOT NULL,                 -- 운수업체명
-    company_tel            VARCHAR(15),                           -- 운수업체 전화번호
-    district_cd            INT          NOT NULL,                 -- 관할 지역 코드
-    up_first_time          VARCHAR(20)  NOT NULL,                 -- 평일 기점 첫차 시간
-    up_last_time           VARCHAR(20)  NOT NULL,                 -- 평일 기점 막차 시간
-    down_first_time        VARCHAR(20)  NOT NULL,                 -- 평일 종점 첫차 시간
-    down_last_time         VARCHAR(20)  NOT NULL,                 -- 평일 종점 막차 시간
-    start_mobile_no        VARCHAR(10),                           -- 기점 정류소 번호
-    start_station_id       BIGINT(32)   NOT NULL,                 -- 기점 정류소 아이디
-    start_station_name     VARCHAR(100) NOT NULL,                 -- 기점 정류소명
-    end_station_id         BIGINT(32)   NOT NULL,                 -- 종점 정류소 아이디
-    end_station_name       VARCHAR(100) NOT NULL,                 -- 종점 정류소명
-    region_name            VARCHAR(100),                          -- 지역명
-    peek_alloc             INT          NOT NULL,                 -- 평일 최소 배차 시간
-    n_peek_alloc           INT          NOT NULL                  -- 평일 최대 배차 시간
+    bus_route_info_item_id BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '노선 상세 아이디',
+    route_id               BIGINT(32)   NOT NULL COMMENT '노선 아이디',
+    route_name             VARCHAR(100) NOT NULL COMMENT '노선 번호',
+    route_type_cd          INT          NOT NULL COMMENT '노선 유형 코드',
+    route_type_name        VARCHAR(50)  NOT NULL COMMENT '노선 유형명',
+    company_id             VARCHAR(20)  NOT NULL COMMENT '운수업체 아이디',
+    company_name           VARCHAR(50)  NOT NULL COMMENT '운수업체명',
+    company_tel            VARCHAR(15) COMMENT '운수업체 전화번호',
+    district_cd            INT          NOT NULL COMMENT '관할 지역 코드',
+    up_first_time          VARCHAR(20)  NOT NULL COMMENT '평일 기점 첫차 시간',
+    up_last_time           VARCHAR(20)  NOT NULL COMMENT '평일 기점 막차 시간',
+    down_first_time        VARCHAR(20)  NOT NULL COMMENT '평일 종점 첫차 시간',
+    down_last_time         VARCHAR(20)  NOT NULL COMMENT '평일 종점 막차 시간',
+    start_mobile_no        VARCHAR(10) COMMENT '기점 정류소 번호',
+    start_station_id       BIGINT(32)   NOT NULL COMMENT '기점 정류소 아이디',
+    start_station_name     VARCHAR(100) NOT NULL COMMENT '기점 정류소명',
+    end_station_id         BIGINT(32)   NOT NULL COMMENT '종점 정류소 아이디',
+    end_station_name       VARCHAR(100) NOT NULL COMMENT '종점 정류소명',
+    region_name            VARCHAR(100) COMMENT '지역명',
+    peek_alloc             INT          NOT NULL COMMENT '평일 최소 배차 시간',
+    n_peek_alloc           INT          NOT NULL COMMENT '평일 최대 배차 시간'
 );

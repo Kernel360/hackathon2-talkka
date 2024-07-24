@@ -1,8 +1,10 @@
 package org.kernel360.busseat.route_station.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
+import org.kernel360.busseat.openapi.dto.BusRouteStationListBody;
 import org.kernel360.busseat.route_station.dto.RouteStationDto;
 import org.kernel360.busseat.route_station.entity.BusRouteStationEntity;
 import org.kernel360.busseat.route_station.repository.BusRouteStationRepository;
@@ -42,6 +44,22 @@ public class BusRouteStationService {
 			.stationName(entity.getStationName())
 			.regionName(entity.getRegionName())
 			.districtCd(entity.getDistrictCd())
+			.centerYn(entity.getCenterYn())
+			.turnYn(entity.getTurnYn())
+			.build();
+	}
+
+	private BusRouteStationEntity toEntity(BusRouteStationListBody dto, Long routeId) {
+		return BusRouteStationEntity.builder()
+			.routeId(routeId)
+			.stationId(dto.getStationId())
+			.stationSeq(dto.getStationSeq())
+			.stationName(dto.getStationName())
+			.regionName(dto.getRegionName())
+			.districtCd(dto.getDistrictCd())
+			.centerYn(dto.getCenterYn())
+			.turnYn(dto.getTurnYn())
+			.createdAt(new Timestamp(System.currentTimeMillis()))
 			.build();
 	}
 }

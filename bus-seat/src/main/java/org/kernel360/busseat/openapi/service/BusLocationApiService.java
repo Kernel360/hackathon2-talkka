@@ -17,7 +17,6 @@ public class BusLocationApiService extends AbstractOpenApiService<BusLocationApi
 		super(routeLocationApiProperty, publicOpenApiProperty);
 	}
 
-	@Override
 	public MultiValueMap<String, String> getQueryParameters(UserRequestDto userRequestDto) {
 		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("routeId", userRequestDto.getRouteId().toString());
