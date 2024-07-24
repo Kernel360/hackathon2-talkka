@@ -27,15 +27,11 @@ public class BusRouteStationService {
 	}
 
 	public List<RouteStationDto> findByRouteId(Long routeId) {
-		return this.busRouteStationRepository.findByRouteId(routeId)
+		return this.busRouteStationRepository.findAllByRouteId(routeId)
 			.stream().map(this::toDto).toList();
 	}
 
-	public Optional<RouteStationDto> findByRouteIdAndSeq(Long routeId, Short seq) {
-		return this.busRouteStationRepository.findByRouteIdAndStationSeq(routeId, seq).map(this::toDto);
-	}
-
-	private RouteStationDto toDto(BusRouteStationEntity entity) {
+	public RouteStationDto toDto(BusRouteStationEntity entity) {
 		return RouteStationDto.builder()
 			.busRouteStationId(entity.getBusRouteStationId())
 			.routeId(entity.getRouteId())
@@ -49,7 +45,7 @@ public class BusRouteStationService {
 			.build();
 	}
 
-	private BusRouteStationEntity toEntity(BusRouteStationListBody dto, Long routeId) {
+	public BusRouteStationEntity toEntity(BusRouteStationListBody dto, Long routeId) {
 		return BusRouteStationEntity.builder()
 			.routeId(routeId)
 			.stationId(dto.getStationId())

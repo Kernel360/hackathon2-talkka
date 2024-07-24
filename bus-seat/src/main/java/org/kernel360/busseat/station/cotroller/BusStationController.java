@@ -25,7 +25,7 @@ public class BusStationController {
 		return busStationService.findBusStationById(stationId).orElseThrow(); // 처리 필요함.
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	public List<StationDto> findAll(
 		@RequestParam("stationName") String stationName
 	) {
@@ -34,4 +34,5 @@ public class BusStationController {
 		}
 		return busStationService.searchByStationNames(stationName);
 	}
+
 }
