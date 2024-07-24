@@ -11,4 +11,5 @@ public interface BusRouteRepository extends JpaRepository<BusRouteEntity, String
 	List<BusRouteEntity> findByRouteNameContaining(String name);
 
 	BusRouteEntity findByRouteName(String routeName);
+	
 }

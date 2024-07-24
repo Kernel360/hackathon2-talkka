@@ -12,13 +12,15 @@ import lombok.RequiredArgsConstructor;
 public class RouteInfoItemService {
 	private final RouteInfoItemRepository routeInfoItemRepository;
 
-	private RouteInfoItemEntity toEntity(RouteInfoItemApiBody routeInfoItemApiBody) {
+	public RouteInfoItemEntity toEntity(RouteInfoItemApiBody routeInfoItemApiBody) {
 		return RouteInfoItemEntity.builder()
 			.routeId(routeInfoItemApiBody.getRouteId())
 			.routeName(routeInfoItemApiBody.getRouteName())
 			.regionName(routeInfoItemApiBody.getRegionName())
 			.startStationName(routeInfoItemApiBody.getStartStationName())
 			.endStationName(routeInfoItemApiBody.getEndStationName())
+			.endStationId(routeInfoItemApiBody.getEndStationId())
+			.startStationId(routeInfoItemApiBody.getStartStationId())
 			.startMobileNo(routeInfoItemApiBody.getStartMobileNo())
 			.companyId(routeInfoItemApiBody.getCompanyId())
 			.companyName(routeInfoItemApiBody.getCompanyName())

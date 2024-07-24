@@ -4,7 +4,7 @@ import org.kernel360.busseat.openapi.configuration.PublicOpenApiProperty;
 import org.kernel360.busseat.openapi.configuration.RouteLocationApiProperty;
 import org.kernel360.busseat.openapi.dto.BusLocationApiBody;
 import org.kernel360.busseat.openapi.dto.BusLocationApiResponse;
-import org.kernel360.busseat.user_request.dto.UserRequestDto;
+import org.kernel360.busseat.user_request.dto.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -17,9 +17,9 @@ public class BusLocationApiService extends AbstractOpenApiService<BusLocationApi
 		super(routeLocationApiProperty, publicOpenApiProperty);
 	}
 
-	public MultiValueMap<String, String> getQueryParameters(UserRequestDto userRequestDto) {
+	public BusLocationApiResponse request(UserRequest userRequest) {
 		final MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.add("routeId", userRequestDto.getRouteId().toString());
-		return params;
+		params.add("routeId", userRequest.getRouteId().toString());
+		return request(params, BusLocationApiResponse.class);
 	}
 }

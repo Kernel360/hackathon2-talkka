@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RouteInfoItemRepository extends JpaRepository<RouteInfoItemEntity, Long> {
+	RouteInfoItemEntity findByRouteName(String routeName);
 }
