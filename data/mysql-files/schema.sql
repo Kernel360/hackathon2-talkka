@@ -20,19 +20,19 @@ CREATE TABLE `BUS_ROUTE`
 );
 
 
-DROP TABLE IF EXISTS `BUS_ROUTE_LOCATION`;
-CREATE TABLE `BUS_ROUTE_LOCATION`
+DROP TABLE IF EXISTS `BUS_LOCATION`;
+CREATE TABLE `BUS_LOCATION`
 (
-    `bus_route_location_id` BIGINT(32)                     NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
-    `route_id`              BIGINT(32)                     NOT NULL COMMENT '교통 API 상 버스 노선 ID',
-    `station_id`            BIGINT(32)                     NOT NULL COMMENT '교통 API 상 버스 정류장 ID',
-    `station_seq`           SMALLINT                       NOT NULL COMMENT '기점으로부터의 정류장 순서',
-    `end_bus`               ENUM ('0', '1')                NOT NULL DEFAULT '0' COMMENT '0: 일반, 1: 막차',
-    `low_plate`             ENUM ('0', '1')                NOT NULL DEFAULT '0' COMMENT '0: 일반버스, 1: 저상버스',
-    `plate_no`              VARCHAR(32)                    NOT NULL COMMENT '운행 차량 번호',
-    `plate_type`            ENUM ('0', '1', '2', '3', '4') NOT NULL DEFAULT '0' COMMENT '0: 정보없음, 1: 소형승합차, 2: 중형승합차, 3: 대형승합차, 4: 2층버스',
-    `remain_seat_count`     SMALLINT                       NOT NULL DEFAULT -1 COMMENT '-1 : 정보 없음',
-    `created_at`            TIMESTAMP                      NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `bus_location_id`   BIGINT(32)  NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
+    `route_id`          BIGINT(32)  NOT NULL COMMENT '교통 API 상 버스 노선 ID',
+    `station_id`        BIGINT(32)  NOT NULL COMMENT '교통 API 상 버스 정류장 ID',
+    `station_seq`       INT         NOT NULL COMMENT '기점으로부터의 정류장 순서',
+    `end_bus`           VARCHAR(10) NOT NULL DEFAULT '0' COMMENT '0: 일반, 1: 막차',
+    `low_plate`         VARCHAR(10) NOT NULL DEFAULT '0' COMMENT '0: 일반버스, 1: 저상버스',
+    `plate_no`          VARCHAR(32) NOT NULL COMMENT '운행 차량 번호',
+    `plate_type`        VARCHAR(10) NOT NULL DEFAULT '0' COMMENT '0: 정보없음, 1: 소형승합차, 2: 중형승합차, 3: 대형승합차, 4: 2층버스',
+    `remain_seat_count` INT         NOT NULL DEFAULT -1 COMMENT '-1 : 정보 없음',
+    `created_at`        TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -42,7 +42,7 @@ CREATE TABLE `BUS_ROUTE_STATION`
     `bus_route_station_id` BIGINT(32)   NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '단순 식별자',
     `route_id`             BIGINT(32)   NOT NULL,
     `station_id`           BIGINT(32)   NOT NULL,
-    `station_seq`          SMALLINT     NOT NULL,
+    `station_seq`          INT          NOT NULL,
     `station_name`         VARCHAR(100) NOT NULL,
     `region_name`          VARCHAR(100) NOT NULL,
     `district_cd`          VARCHAR(100) NOT NULL,

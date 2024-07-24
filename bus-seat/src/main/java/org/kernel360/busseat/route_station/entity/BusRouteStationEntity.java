@@ -33,7 +33,7 @@ public class BusRouteStationEntity {
 	private Long stationId;
 
 	@Column(name = "station_seq", nullable = false)
-	private Short stationSeq;
+	private Integer stationSeq;
 
 	@Column(name = "station_name", nullable = false)
 	private String stationName;

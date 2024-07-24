@@ -1,4 +1,4 @@
-package org.kernel360.busseat.route_location.controller;
+package org.kernel360.busseat.bus_location.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
