@@ -1,9 +1,9 @@
 package org.kernel360.busseat.route_station.entity;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import org.kernel360.busseat.route.entity.BusRouteEntity;
-import org.kernel360.busseat.station.entity.BusStationEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,6 +51,12 @@ public class BusRouteStationEntity {
 	@Column(name = "turn_yn", nullable = false)
 	private String turnYn;
 
+	@Column(name = "longitude", nullable = false)
+	private BigDecimal longitude;
+
+	@Column(name = "latitude", nullable = false)
+	private BigDecimal latitude;
+
 	@Column(name = "created_at", nullable = false)
 	private Timestamp createdAt;
 
@@ -58,8 +64,4 @@ public class BusRouteStationEntity {
 	@ManyToOne
 	@JoinColumn(name = "route_id", insertable = false, updatable = false)
 	private BusRouteEntity busRouteEntity;
-
-	@ManyToOne
-	@JoinColumn(name = "station_id", insertable = false, updatable = false)
-	private BusStationEntity busStationEntity;
 }

@@ -1,5 +1,7 @@
 package org.kernel360.busseat.route_station.dto;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,4 +31,8 @@ public class RouteStationDto {
 	private String centerYn;
 
 	private String turnYn;
+
+	private BigDecimal longitude;
+
+	private BigDecimal latitude;
 }
