@@ -1,5 +1,6 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {ErrorPage} from "./ErrorPage";
+import { RouteStatisticsPage } from "./pages/RouteStatisticsPage";
 
 const router = createBrowserRouter([
   /**
@@ -8,9 +9,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-        <div>
-          Home
-        </div>
+      <RouteStatisticsPage/>
     ),
     errorElement: <ErrorPage/>,
   },
