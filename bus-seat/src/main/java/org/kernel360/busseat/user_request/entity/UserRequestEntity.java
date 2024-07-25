@@ -2,7 +2,7 @@ package org.kernel360.busseat.user_request.entity;
 
 import java.sql.Timestamp;
 
-import org.kernel360.busseat.route.entity.BusRouteEntity;
+import org.kernel360.busseat.route.entity.RouteEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,5 +38,5 @@ public class UserRequestEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "route_id", insertable = false, updatable = false)
-	private BusRouteEntity busRoute;
+	private RouteEntity busRoute;
 }

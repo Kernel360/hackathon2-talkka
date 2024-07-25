@@ -7,32 +7,32 @@ import java.util.Optional;
 
 import org.kernel360.busseat.openapi.dto.BusRouteStationListBody;
 import org.kernel360.busseat.route_station.dto.RouteStationDto;
-import org.kernel360.busseat.route_station.entity.BusRouteStationEntity;
-import org.kernel360.busseat.route_station.repository.BusRouteStationRepository;
+import org.kernel360.busseat.route_station.entity.RouteStationEntity;
+import org.kernel360.busseat.route_station.repository.RouteStationRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BusRouteStationService {
-	private final BusRouteStationRepository busRouteStationRepository;
+public class RouteStationService {
+	private final RouteStationRepository routeStationRepository;
 
 	public Optional<RouteStationDto> findById(Long id) {
-		return this.busRouteStationRepository.findById(id).map(this::toDto);
+		return this.routeStationRepository.findById(id).map(this::toDto);
 	}
 
 	public List<RouteStationDto> findAll() {
-		return this.busRouteStationRepository.findAll()
+		return this.routeStationRepository.findAll()
 			.stream().map(this::toDto).toList();
 	}
 
 	public List<RouteStationDto> findByRouteId(Long routeId) {
-		return this.busRouteStationRepository.findAllByRouteId(routeId)
+		return this.routeStationRepository.findAllByRouteId(routeId)
 			.stream().map(this::toDto).toList();
 	}
 
-	public RouteStationDto toDto(BusRouteStationEntity entity) {
+	public RouteStationDto toDto(RouteStationEntity entity) {
 		return RouteStationDto.builder()
 			.busRouteStationId(entity.getBusRouteStationId())
 			.routeId(entity.getRouteId())
@@ -48,8 +48,8 @@ public class BusRouteStationService {
 			.build();
 	}
 
-	public BusRouteStationEntity toEntity(BusRouteStationListBody dto, Long routeId) {
-		return BusRouteStationEntity.builder()
+	public RouteStationEntity toEntity(BusRouteStationListBody dto, Long routeId) {
+		return RouteStationEntity.builder()
 			.routeId(routeId)
 			.stationId(dto.getStationId())
 			.stationSeq(dto.getStationSeq())
@@ -64,7 +64,7 @@ public class BusRouteStationService {
 			.build();
 	}
 
-	public void saveAll(List<BusRouteStationEntity> entities) {
-		this.busRouteStationRepository.saveAll(entities);
+	public void saveAll(List<RouteStationEntity> entities) {
+		this.routeStationRepository.saveAll(entities);
 	}
 }

@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Component
 @ConfigurationProperties(prefix = "openapi.public.service-key")
-public class PublicOpenApiProperty {
+public class PublicApiServiceKeyProperty implements ApiServiceKeyPropertyInterface {
 
 	private List<String> keys;
 

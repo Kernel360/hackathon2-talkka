@@ -11,10 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RouteDto {
-	private Long routeId;
-	private String routeName;
-	private String stationStart;
-	private String stationEnd;
-	private String regionName;
+public class SeatAvg implements SeatAvgInterface {
+	private String timeInterval;
+	private String avgSeats;
 }

@@ -16,5 +16,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserRequestDto {
-	private String routeName;
+	private Long routeId;
 }

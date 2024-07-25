@@ -1,7 +1,7 @@
 package org.kernel360.busseat.openapi.service;
 
-import org.kernel360.busseat.openapi.configuration.PublicOpenApiProperty;
-import org.kernel360.busseat.openapi.configuration.RouteLocationApiProperty;
+import org.kernel360.busseat.openapi.configuration.BusRouteLocationApiProperty;
+import org.kernel360.busseat.openapi.configuration.PublicApiServiceKeyProperty;
 import org.kernel360.busseat.openapi.dto.BusLocationApiBody;
 import org.kernel360.busseat.openapi.dto.BusLocationApiResponse;
 import org.kernel360.busseat.user_request.dto.UserRequest;
@@ -12,9 +12,9 @@ import org.springframework.util.MultiValueMap;
 
 @Service
 public class BusLocationApiService extends AbstractOpenApiService<BusLocationApiBody, BusLocationApiResponse> {
-	public BusLocationApiService(@Autowired RouteLocationApiProperty routeLocationApiProperty, @Autowired
-	PublicOpenApiProperty publicOpenApiProperty) {
-		super(routeLocationApiProperty, publicOpenApiProperty);
+	public BusLocationApiService(@Autowired BusRouteLocationApiProperty busRouteLocationApiProperty, @Autowired
+	PublicApiServiceKeyProperty publicApiServiceKeyProperty) {
+		super(busRouteLocationApiProperty, publicApiServiceKeyProperty);
 	}
 
 	public BusLocationApiResponse request(UserRequest userRequest) {

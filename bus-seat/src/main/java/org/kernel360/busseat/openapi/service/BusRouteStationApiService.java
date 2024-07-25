@@ -1,7 +1,7 @@
 package org.kernel360.busseat.openapi.service;
 
 import org.kernel360.busseat.openapi.configuration.BusRouteStationApiProperty;
-import org.kernel360.busseat.openapi.configuration.PublicOpenApiProperty;
+import org.kernel360.busseat.openapi.configuration.PublicApiServiceKeyProperty;
 import org.kernel360.busseat.openapi.dto.BusRouteStationListBody;
 import org.kernel360.busseat.openapi.dto.BusRouteStationListResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,8 @@ public class BusRouteStationApiService
 	extends AbstractOpenApiService<BusRouteStationListBody, BusRouteStationListResponse> {
 
 	public BusRouteStationApiService(@Autowired BusRouteStationApiProperty apiProperties,
-		@Autowired PublicOpenApiProperty publicOpenApiProperty) {
-		super(apiProperties, publicOpenApiProperty);
+		@Autowired PublicApiServiceKeyProperty publicApiServiceKeyProperty) {
+		super(apiProperties, publicApiServiceKeyProperty);
 	}
 
 	public BusRouteStationListResponse request(String routeId) {
