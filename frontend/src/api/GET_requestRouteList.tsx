@@ -13,7 +13,7 @@ export interface GET_paginationResponseFormat {
         currentPage: number,
         totalPage: number,
     },
-    routes: Route[],
+    data: Route[],
 }
 
 export async function GET_requestRoutesPaginated(

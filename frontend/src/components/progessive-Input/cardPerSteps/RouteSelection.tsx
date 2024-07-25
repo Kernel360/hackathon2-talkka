@@ -1,28 +1,16 @@
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
-import { MoveHorizontal } from 'lucide-react';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
+import {Button} from "@/components/ui/button"
+import {MoveHorizontal} from 'lucide-react';
+import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card"
+import {Input} from "@/components/ui/input"
+import {Popover, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
 import debounce from "lodash/debounce";
 
-import { GET_requestRoutesPaginated, Route } from "@/api/GET_requestRouteList"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
-import { useCarousel } from "@/components/ui/carousel";
+import {GET_requestRoutesPaginated, Route} from "@/api/GET_requestRouteList"
+import {ScrollArea} from "@/components/ui/scroll-area"
+import {Separator} from "@/components/ui/separator"
+import {useCarousel} from "@/components/ui/carousel";
 
 
 interface MOCK_TYPE {
@@ -35,20 +23,20 @@ interface MOCK_TYPE {
 
 const MOCK_DATA: MOCK_TYPE = {
     routes: [
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
-        { name: "7780", station_start: "경기대", station_end: "사당역" },
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
+        {name: "7780", station_start: "경기대", station_end: "사당역"},
     ]
 }
 
@@ -57,10 +45,10 @@ export interface RouteSelectionProps {
 }
 
 export function RouteSelection({
-    setSelection,
-}: RouteSelectionProps) {
+                                   setSelection,
+                               }: RouteSelectionProps) {
 
-    const { orientation, scrollNext, canScrollNext } = useCarousel();
+    const {orientation, scrollNext, canScrollNext} = useCarousel();
 
     const [routeName, setRouteName] = React.useState<string>("");
 
@@ -77,7 +65,7 @@ export function RouteSelection({
         (async () => {
             const result = await GET_requestRoutesPaginated(1, PAGE_SIZE, routeName);
             if (result) {
-                setRouteList(result.routes);
+                setRouteList(result.data);
             }
         })(/* IIFE */);
     }, 120);
@@ -102,17 +90,18 @@ export function RouteSelection({
                         scrollNext();
                     }}
                 >
-                    <div className="rounded-full align-middle text-center text-xs font-bold text-white bg-red-500 py-1 mx-2 px-2 mr-3">
+                    <div
+                        className="rounded-full align-middle text-center text-xs font-bold text-white bg-red-500 py-1 mx-2 px-2 mr-3">
                         {route.routeName}
                     </div>
                     <div>
                         {route.stationStart}
-                        <MoveHorizontal size={20} color="#888888" />
+                        <MoveHorizontal size={20} color="#888888"/>
                         {route.stationEnd}
                     </div>
                     {`지역-${route.regionName}`}
                 </Button>
-                <Separator className="my-0" />
+                <Separator className="my-0"/>
             </div>
         ))
     }
@@ -146,7 +135,7 @@ export function RouteSelection({
                 </PopoverTrigger>
                 <PopoverContent onOpenAutoFocus={(e) => e.preventDefault()}>
                     <ScrollArea className="h-72 rounded-md border">
-                        <RouteButtons />
+                        <RouteButtons/>
                     </ScrollArea>
                 </PopoverContent>
             </Popover>
