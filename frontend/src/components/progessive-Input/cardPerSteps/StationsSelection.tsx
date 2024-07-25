@@ -62,7 +62,7 @@ export function StationSelection({
             }
         })(/* IIFE */);
 
-    }, []);
+    }, [route]);
 
     const StationButtons = () => {
         return stationList.map((station, idx) => (

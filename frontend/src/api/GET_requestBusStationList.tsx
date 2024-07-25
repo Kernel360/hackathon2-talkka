@@ -29,7 +29,7 @@ export async function GET_requestStationsPaginated(
   route: Route,
 ) {
 
-  let requestUrl = `${API_URL}/route/${route.routeId}?size=${pageSize}&page=${pageNumber}`;
+  let requestUrl = `${API_URL}/route/${route.routeId}/stations?size=${150}&page=${pageNumber}`;
 
   const getStationsReponse = await fetch(requestUrl, {
     method: 'GET',

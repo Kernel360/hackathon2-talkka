@@ -85,6 +85,7 @@ export function RouteSelection({
                     variant="ghost"
                     className=" gap-x-1 py-2 w-full h-12"
                     onClick={(_) => {
+			console.log(route);
                         setSelection(route);
                         setSelected(true);
                         scrollNext();

@@ -41,12 +41,6 @@ export function RouteStatisticsPage() {
     // TODO: change later
     // const [steps, setSteps] = useState<number>(0);
 
-    // useEffect(() => {
-    //     if (steps === 0) {
-    //         return;
-    //     }
-    // }, [steps])
-
     return (
         <div className="w-full h-[100vh] flex justify-center">
             <Carousel
