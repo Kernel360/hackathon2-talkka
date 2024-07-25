@@ -7,7 +7,6 @@ import org.kernel360.busseat.bus_location.service.BusLocationService;
 import org.kernel360.busseat.openapi.dto.BusLocationApiResponse;
 import org.kernel360.busseat.openapi.service.BusLocationApiService;
 import org.kernel360.busseat.route.entity.RouteEntity;
-import org.kernel360.busseat.route.repository.RouteRepository;
 import org.kernel360.busseat.user_request.dto.UserRequest;
 import org.kernel360.busseat.user_request.service.UserRequestService;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -23,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableScheduling
 public class ScheduledTask {
 
-	private final RouteRepository routeRepository;
+	// private final RouteRepository routeRepository;
 	private final BusLocationApiService busLocationApiService;
 	private final BusLocationService busLocationService;
 	private final UserRequestService userRequestService;
@@ -37,10 +36,11 @@ public class ScheduledTask {
 		// request bus locations
 		for (UserRequest userRequest : userRequests) {
 			try {
-				final var route = routeRepository.findById(userRequest.getRouteId()).orElseThrow();
-				if (!isBusTime(route)) {
-					continue;
-				}
+				// TEST 필요함...
+				// final var route = routeRepository.findById(userRequest.getRouteId()).orElseThrow();
+				// if (!isBusTime(route)) {
+				// 	continue;
+				// }
 
 				final BusLocationApiResponse busLocationApiResponse = busLocationApiService.request(userRequest);
 				// save

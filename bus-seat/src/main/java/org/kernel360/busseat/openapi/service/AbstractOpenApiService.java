@@ -4,7 +4,6 @@ import java.net.URI;
 
 import org.kernel360.busseat.openapi.configuration.ApiPropertyInterface;
 import org.kernel360.busseat.openapi.configuration.ApiServiceKeyPropertyInterface;
-import org.kernel360.busseat.openapi.configuration.PublicApiServiceKeyProperty;
 import org.kernel360.busseat.openapi.dto.ApiResponseInterface;
 import org.kernel360.busseat.openapi.dto.ResultCode;
 import org.kernel360.busseat.openapi.exception.OpenApiException;
@@ -23,7 +22,7 @@ public abstract class AbstractOpenApiService<BODY, RESPONSE_DTO extends ApiRespo
 	private final ApiServiceKeyPropertyInterface apiServiceKeyPropertyInterface;
 
 	public AbstractOpenApiService(ApiPropertyInterface apiProperties,
-		PublicApiServiceKeyProperty apiServiceKeyPropertyInterface) {
+		ApiServiceKeyPropertyInterface apiServiceKeyPropertyInterface) {
 		this.apiProperties = apiProperties;
 		this.apiServiceKeyPropertyInterface = apiServiceKeyPropertyInterface;
 	}
