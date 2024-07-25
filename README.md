@@ -8,6 +8,9 @@
 
 이 프로젝트는 과거의 버스 좌석 기록을 사용자에게 제공하여 보다 더 나은 출퇴근을 도와주는 서비스를 제공합니다.
 
+## 발표 자료
+[BE-hackathon-team-1.pdf](https://github.com/user-attachments/files/16377073/BE-hackathon-team-1.pdf)
+
 ### 프로젝트 목표
 
 - 해커톤 목표
