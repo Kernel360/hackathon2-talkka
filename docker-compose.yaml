@@ -16,6 +16,8 @@ services:
       - ./.env
     depends_on:
       - mysql
+    environment:
+      - TZ=Asia/Seoul
   mysql:
     image: mysql:8.0
     container_name: bus-mysql
