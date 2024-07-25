@@ -18,6 +18,17 @@ services:
       - mysql
     environment:
       - TZ=Asia/Seoul
+
+  bus-client:
+    build: ./frontend
+    container_name: bus-client
+    ports:
+      - "9999:8081"
+    depends_on:
+      - bus-server
+    environment:
+      - TZ=Asia/Seoul
+
   mysql:
     image: mysql:8.0
     container_name: bus-mysql
