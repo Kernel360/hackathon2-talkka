@@ -56,14 +56,14 @@ export function RouteSelection({
 
     const [routeList, setRouteList] = React.useState<Route[]>([]);
 
-    const [pageNumber, setPageNumber] = React.useState<number>(1);
+    const [pageNumber, setPageNumber] = React.useState<number>(0);
 
     const PAGE_SIZE = 5;
 
     const debouncedHandler = debounce(() => {
-        setPageNumber(1);
+        setPageNumber(0);
         (async () => {
-            const result = await GET_requestRoutesPaginated(1, PAGE_SIZE, routeName);
+            const result = await GET_requestRoutesPaginated(0, PAGE_SIZE, routeName);
             if (result) {
                 setRouteList(result.data);
             }
