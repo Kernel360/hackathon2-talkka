@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: bus-client-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+
+openapi:
+  public:
+    route-location:
+      host: apis.data.go.kr
+      path: /6410000/buslocationservice/getBusLocationList
+    route-info-item:
+      host: apis.data.go.kr
+      path: /6410000/busrouteservice/getBusRouteInfoItem
+    bus-route-station:
+      host: apis.data.go.kr
+      path: /6410000/busrouteservice/getBusRouteStationList
+    bus-route-list:
+      host: apis.data.go.kr
+      path: /6410000/busrouteservice/getBusRouteList
+
+    service-key:
+      keys:
+        - ${SERVICE_KEY_1}
