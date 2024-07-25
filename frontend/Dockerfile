@@ -6,8 +6,10 @@ WORKDIR /app
 COPY package.json .
 # 명령어 실행 (의존성 설치)
 RUN npm install
+RUN npm install -g serve
 # 현재 디렉토리의 모든 파일을 도커 컨테이너의 워킹 디렉토리에 복사한다.
 COPY . .
+RUN npm run build
 
 # 각각의 명령어들은 한줄 한줄씩 캐싱되어 실행된다.
 # package.json의 내용은 자주 바뀌진 않을 거지만
@@ -19,7 +21,4 @@ COPY . .
 EXPOSE 8081
 
 # npm start 스크립트 실행
-CMD ["npm", "run", "dev"]
-
-# 그리고 Dockerfile로 docker 이미지를 빌드해야한다.
-# $ docker build .
+ENTRYPOINT ["serve", "-s", "./dist", "-p", "8081"]
