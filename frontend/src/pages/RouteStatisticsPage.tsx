@@ -39,12 +39,12 @@ export function RouteStatisticsPage() {
     const [time, setTime] = useState<{begin:string, end:string}>();
 
     // TODO: change later
-    // const [steps, setSteps] = useState<number>(0);
+    const [steps, setSteps] = useState<number>(0);
 
     return (
         <div className="w-full h-[100vh] flex justify-center">
             <Carousel
-                className="flex-1 h-full max-w-xl content-center"
+                className="flex-1 h-full max-w-3xl content-center"
             >
                 <Wrapper
                     route={<RouteSelection setSelection={setRoute} />}
