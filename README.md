@@ -1,4 +1,4 @@
-# hackathon2-gyeonggiBus
+# 탈까?
 
 ## 프로젝트 소개
 
