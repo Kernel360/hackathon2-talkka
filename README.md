@@ -102,7 +102,7 @@
     - [ApiPropertyInterface](https://github.com/Kernel360/hackathon2-talkka/blob/ce13609bd5ebd8e168c0a27a9cd76b5b363bdaa8/bus-seat/src/main/java/org/kernel360/busseat/openapi/configuration/ApiPropertyInterface.java)
     - [BusRouteLocationApiProperty](https://github.com/Kernel360/hackathon2-talkka/blob/ce13609bd5ebd8e168c0a27a9cd76b5b363bdaa8/bus-seat/src/main/java/org/kernel360/busseat/openapi/configuration/BusRouteLocationApiProperty.java)
    
-- 효과
+### 효과
   - ApiService 작성 시간 감소
   - 빌드 이후에도 Key, URI 변경 가능 / Repository 에 Key가 더 이상 노출되지 않음.
 
