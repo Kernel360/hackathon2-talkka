@@ -1,17 +1,15 @@
 import { API_URL } from "./API_URL";
 
 export interface POST_routeAddRequestFormat {
-  route_name: string,
-  station_name: string
+  route_id: number,
 }
 
-export async function POST_requestNewRoute(routeName: string, stationName: string) {
+export async function POST_requestNewRoute(routeId: number, stationName: string) {
 
-  let requestUrl = `${API_URL}/route`;
+  let requestUrl = `${API_URL}/collect`;
 
   const requestPayload: POST_routeAddRequestFormat = {
-    route_name: routeName,
-    station_name: stationName,
+    route_id: routeId,
   };
 
   const addRouteResponse = await fetch(requestUrl, {

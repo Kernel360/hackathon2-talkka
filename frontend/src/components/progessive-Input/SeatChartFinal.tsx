@@ -83,7 +83,7 @@ const getPhaseTags = (seats: number) => {
     return chartConfig.p2;
   if (seats <= 35)
     return chartConfig.p1;
-  if (seats <= 45)
+  if (seats > 35)
     return chartConfig.p0;
 }
 
@@ -126,9 +126,9 @@ export function SeatChart({
       </CardHeader>
       <CardContent>
 
-        <ScrollArea className="h-72">
+        {/* <ScrollArea className="h-72"> */}
           <ChartContainer
-            className="h-72 rounded-md border"
+            className="h-72 rounded-md border w-full"
             config={chartConfig}
           >
             <BarChart
@@ -157,6 +157,8 @@ export function SeatChart({
               <XAxis
                 dataKey="avgSeats"
                 type="number"
+                minTickGap={20}
+                max={80}
                 hide
               />
               <ChartTooltip
@@ -179,7 +181,7 @@ export function SeatChart({
               </Bar>
             </BarChart>
           </ChartContainer>
-        </ScrollArea>
+        {/* </ScrollArea> */}
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className=" text-right text-muted-foreground w-full">
