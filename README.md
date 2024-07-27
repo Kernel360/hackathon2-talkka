@@ -8,13 +8,35 @@
 
 이 프로젝트는 과거의 버스 좌석 기록을 사용자에게 제공하여 보다 더 나은 출퇴근을 도와주는 서비스를 제공합니다.
 
+### 해커톤 내에 개발한 FE
+- 미완, 해당 정류장에 도착하는 버스의 좌석수를 간단하게 보여주는 모습
+  
+|검색|정류장 선택|시간 선택|결과|
+|----|-----|----|-|
+|![image](https://github.com/user-attachments/assets/3f8bd6e2-5964-47f2-8316-9bc72724ae13)|![image](https://github.com/user-attachments/assets/2524933d-7da0-4330-84f1-51b127236fa7)|![image](https://github.com/user-attachments/assets/8bf8f76e-864b-44db-acc6-cc99f18f8936)|![image](https://github.com/user-attachments/assets/f53876b0-1a58-4138-8517-a6ae848a6807)|
+
+
+### Grafana 를 통한 view
+- 해커톤 이후 간단하게 view 를 보여주기 위해서 grafana 를 이용함.
+![image](https://github.com/user-attachments/assets/ca2de74c-9117-4af8-a51f-7e54f7e9858d)
+
+
+### 개발자
+- 박성준 [@JuneParkCode](https://github.com/JuneParkCode) - 팀장
+- 김민규 [@kimminkyew](https://github.com/kimminkyeu) - 3~5 일차
+- 이선우 [@I-migi](https://github.com/I-migi) - 3~5 일차
+- 이강민 [@km2535](https://github.com/km2535) - 1~3 일차
+- 송해덕 [@ss0ngcode](https://github.com/ss0ngcode) - 1~3 일차
+- 임건우 [@limbaba1120](https://github.com/limbaba1120) 1~3 일차
+
+
 ### 발표 자료
 [BE-hackathon-team-1.pdf](https://github.com/user-attachments/files/16377073/BE-hackathon-team-1.pdf)
 
 ### 프로젝트 목표
 
 - 해커톤 목표
-    - [x] 버스 노선 / 정류장 / 시간에 따른 좌석 수 집계
+    - [x] 버스 노선 / 정류장 / 시간에 따른 좌석 수 5분간 평균 기록 제공
     - [x] 간편한 UI 제공
 - 추가 목표
     - [ ] 버스 노선 / 정류장 / 시간에 따른 혼잡도 예측
@@ -23,7 +45,7 @@
 ### 프로젝트 기술 스택
 
 - Backend : `Spring Boot 3.3.2` (`Java 17`)
-- Frontend : `React.js` (`TypeScript`, `Shadcn ui`)
+- Frontend : `React.js` (`TypeScript`, `Shadcn ui`)  | `Grafana` ( 해커톤 이후 )
 - DB : `MySQL 8.0`
 - Infra: `Docker`, `Docker Compose`, `photogrammer.me home-server`
 
